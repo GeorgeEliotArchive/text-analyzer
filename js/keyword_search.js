@@ -214,7 +214,8 @@ function keywordsearch() {
         } else {
             for (var j = 0; j < this.result.length; j++) {
                 // document.write("result" + j + ":" + this.result[j] + "<br>");
-                finalResult += "<div>" + this.result[j] + "</div>";
+                var _result_temp = this.result[j];
+                finalResult += "<a id='result' href='javascript:void(0);' onclick='relocate(this)' style='color: #1a1e21'>" + _result_temp  + "</a><br>";
 
                 document.getElementById("query_results_title").innerHTML = "<h3>" + "Number of keyword search results : " + "  " + this.result.length + "</h3>";
                 document.getElementById("query_results").innerHTML = finalResult;
