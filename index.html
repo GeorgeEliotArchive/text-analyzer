@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <!--  1. Core CSS of Bootstrap  -->
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <!--  2. Jquery document  -->
+    <script src="js/jquery.js" type="text/javascript" charset="UTF-8"></script>
+    <!--  3. Core JS of Bootstrap  -->
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="UTF-8"></script>
+    <!--  4. D3 package  -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!--  5. Other JS documents  -->
+    <script type="text/javascript" src="js/file_info.js"></script>
+    <script type="text/javascript" src="js/keyword_search.js"></script>
+    <script type="text/javascript" src="js/check_box_status.js"></script>
+<!--    <script type="text/javascript" src="js/left_context.js"></script>-->
+<!--    <script type="text/javascript" src="js/right_context.js"></script>-->
+<!--    <script type="text/javascript" src="js/createRows.js"></script>-->
+    <script type="text/css" src="css/text_area.css"></script>
+    <script type="text/css" src="css/div_textarea.css"></script>
+
+</head>
+<body>
+    <h1>Test page for George Eliot Archive project</h1>
+    <br>
+    <br>
+    <br>
+    <select id="select_novel_list" onchange="file_info()">
+        <option value="0" disabled selected hidden>Novel Selection...</option>
+        <option value="https://georgeeliotarchive.org/files/original/63eb6f7841561fd5f4c8e41c42b76508.txt">Adam Bede(1859)</option>
+        <option value="https://georgeeliotarchive.org/files/original/ecce6017f39d885060f364c10a266846.txt">Brother Jacob(1864)</option>
+        <option value="https://georgeeliotarchive.org/files/original/2149439c54aa729784f77413069e1f82.txt">Daniel Deronda(1876)</option>
+        <option value="https://georgeeliotarchive.org/files/original/b02cd0c502f73e713bfe95b6f58b0328.txt">Felix Holt, the Radical(1866)</option>
+        <option value="https://georgeeliotarchive.org/files/original/6f5249763afe335ab7866fdb4349534b.txt">Impressions of Theophrastus Such (1879)</option>
+        <option value="https://georgeeliotarchive.org/files/original/febdea28342e7bf750ebe66cbbad15c7.txt">Middlemarch(1871-72)</option>
+        <option value="https://georgeeliotarchive.org/files/original/3d43f4fe740957af8f44b3cc3c546634.txt">Romola(1863)</option>
+        <option value="https://georgeeliotarchive.org/files/original/bc75805af6c1c3c320ecb1a35ce6726d.txt">Scenes of Clerical Life(1858)</option>
+        <option value="https://georgeeliotarchive.org/files/original/43c0fcd54037b45ab266e76de89ad6d0.txt">Silas Marner(1861)</option>
+        <option value="https://georgeeliotarchive.org/files/original/bb4d5db1d598a65e6955cff838c9e4c4.txt">The Lifted Veil(1859)</option>
+        <option value="https://georgeeliotarchive.org/files/original/f1116bc8e477f576ff52d6dd4e6b2079.txt">The Mill on the Floss(1860)</option>
+    </select>
+    <br>
+    <br>
+    <p id="p_novel_file_name"></p>
+    <p id="p_novel_name"></p>
+    <br>
+    <br>
+<!--    <p>Select a txt file:<input type="file" id="input_file" onchange="file_info()"></p>-->
+    <br>
+
+    <form name="keyword_searching">
+        <h3>Keyword search</h3>
+        <input type="text" id="keyword">
+        <input type="button" id="search" value="Search" onclick="keywordsearch()">
+        <input type="checkbox" id="case_sensitive"> Case Sensitive
+        <br>
+        <br>
+    </form>
+
+    <p>Left context words
+        <select id="left_context" onchange="left_context_change()">
+            <option value="5" selected="selected">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
+    </p>
+
+
+    <p>Right context words
+        <select id="right_context" onchange="right_context_change()">
+            <option value="5" selected="selected">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
+    </p>
+
+
+    <p id="keyword_test"></p>
+    <p id="sensitive_value"></p>
+    <p id="leftContext_value"></p>
+    <p id="rightContext_value"></p>
+
+    <br>
+    <br>
+    <h3 id="total_text_lines"></h3>
+    <h3 id="total_word_count"></h3>
+    <p id="query_results_title"></p>
+    <p id="query_results"></p>
+
+    <br>
+    <br>
+
+<!--    <div id="main">-->
+<!--        <div id="leftbox">-->
+<!--            <textarea wrap="off" rows="50" cols="2" id="leftNum" disabled></textarea>-->
+<!--        </div>-->
+<!--        <textarea id="novel_content" name="content" onkeydown="keyUp()" onscroll="getId('leftNum').scrollTop = this.scrollTop;" rows="50" cols="100"></textarea>-->
+<!--    </div>-->
+
+    <h3 id="plain_text">Plain text</h3>
+<!--    <textarea id="novel_content" name="content" rows="30" cols="100"></textarea>-->
+    <div id="novel_content" contenteditable="true" style="white-space: pre-wrap; overflow-x: auto; width: 800px; height: 500px"></div>
+    <br/>
+    <br/>
+
+</body>
+</html>
