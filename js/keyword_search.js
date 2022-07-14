@@ -277,7 +277,7 @@ function relocate(obj){
 
 function scrollTo(index){
     var content_position = document.getElementById("novel_content");
-    var lineHeight = 24;
+    var lineHeight = 56;
     const row = (index).toFixed(0);
     content_position.scrollTop = (row - 2) * lineHeight;
 }
