@@ -192,6 +192,10 @@ function matchKeyword(keyword, content, l_length,r_length) {
 }
 
 function keywordsearch() {
+    /*search button show function by Jennie Ren*/
+    var T = document.getElementById("search-result");
+    T.style.display = "block";  // <-- Set it to block
+    /*the end*/
     var status_value = $("input[type='checkbox']").is(':checked')
     this.keyword = $("#keyword").val();
     this.content = $("#novel_content").text();
