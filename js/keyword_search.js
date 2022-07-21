@@ -253,7 +253,7 @@ function relocate(obj){
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
             // var _index = content.indexOf(arr[i].split(" ")[0]);
-            var _index = i + 1;
+            var _index = i;
             arr[i] = '<b>' + arr[i] + '</b>';
             document.getElementById("novel_content").innerHTML = arr.join("\n");
             scrollTo(_index)
@@ -277,9 +277,9 @@ function relocate(obj){
 
 function scrollTo(index){
     var content_position = document.getElementById("novel_content");
-    var lineHeight = 56;
+    var lineHeight = 30;
     const row = (index).toFixed(0);
-    content_position.scrollTop = (row - 2) * lineHeight;
+    content_position.scrollTop = (row - 1) * lineHeight;
 }
 
 
