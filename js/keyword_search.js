@@ -253,7 +253,7 @@ function relocate(obj){
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
             // var _index = content.indexOf(arr[i].split(" ")[0]);
-            var _index = i + 1;
+            var _index = i;
             arr[i] = '<b>' + arr[i] + '</b>';
             document.getElementById("novel_content").innerHTML = arr.join("\n");
             scrollTo(_index)
