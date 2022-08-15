@@ -250,17 +250,29 @@ function relocate(obj){
     var keyword = obj.innerText;
     var content = $("#novel_content").text();
     var arr = content.split("\n");
+    var width = document.getElementById("novel_content").clientWidth;
+    var total_pixels = 0;
+    var height_rows = 30;
+    var adjust_factor = 16;
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
             // var _index = content.indexOf(arr[i].split(" ")[0]);
             var _index = i;
             arr[i] = '<b>' + arr[i] + '</b>';
             document.getElementById("novel_content").innerHTML = arr.join("\n");
-            scrollTo(_index)
-            alert(arr[i]+ "***" + keyword + '***' + height);
+            // alert(get_tex_width(arr[i],"20px serif") / width);
+            alert(total_pixels);
+            scrollTo(total_pixels);
             break;
         }
         else {
+            if (get_tex_width(arr[i],"20px Crimson Text") / width <= 1){
+              total_pixels = total_pixels + height_rows;
+            }
+            else {
+                var x = Math.ceil(((get_tex_width(arr[i],"20px Crimson Text") + adjust_factor) / width));
+                total_pixels = total_pixels + height_rows * x;
+            }
             continue;
         }
     }
@@ -275,14 +287,67 @@ function relocate(obj){
     // alert(content)
 }
 
-function scrollTo(index){
+function scrollTo(pixels){
     var content_position = document.getElementById("novel_content");
-    var lineHeight = 56;
-    const row = (index).toFixed(0);
-    content_position.scrollTop = (row - 2) * lineHeight;
+    // var lineHeight = 56;
+    // const row = (pixels).toFixed(0);
+    content_position.scrollTop = pixels;
 }
 
+// String.prototype.byteLength = function() {
+//     var length = 0;
+//     Array.from(this).map(function(char){
+//         if(char.charCodeAt(0)>255) {
+//             length += 2;
+//         }else {
+//             length++;
+//         }
+//     });
+//
+//     return length;
+// }
 
+// String.prototype.width = function(font) {
+//     var f = font || '12px arial',
+//         o = $('<div></div>')
+//             .text(this)
+//             .css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': f})
+//             .appendTo($('body')),
+//         w = o.width();
+//
+//     o.remove();
+//
+//     return w;
+// }
 
+// var getWidthOfText = function(text, styles) {
+//     var isObjectJSON = function(obj) {
+//         return obj && typeof obj === 'object' && !Array.isArray(obj);
+//     };
+//
+//     var element = document.createElement('div');
+//     if (isObjectJSON(styles)) {
+//         var styleKeys = Object.keys(styles);
+//         for (var i = 0, n = styleKeys.length; i < n; ++i) {
+//             element.style[styleKeys[i]] = styles[styleKeys[i]];
+//         }
+//     }
+//     element.style.display = 'inline-block';
+//     element.innerHTML = text;
+//     document.body.appendChild(element);
+//     var width = element.offsetWidth;
+//     document.body.removeChild(element);
+//     return width;
+// };
+
+function get_tex_width(txt, font) {
+    this.element = document.createElement('canvas');
+    this.context = this.element.getContext("2d");
+    this.context.font = font;
+    return this.context.measureText(txt).width;
+}
+// $("#calculated").html('Calculated width ' + get_tex_width("Hello World", "30px Arial"));
+//
+// $("#rendered").html("Span text width "+$("span").width());
 
 
