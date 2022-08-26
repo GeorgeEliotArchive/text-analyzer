@@ -253,7 +253,7 @@ function relocate(obj){
     var width = document.getElementById("novel_content").clientWidth;
     var total_pixels = 0;
     var height_rows = 30;
-    var adjust_factor = 16;
+    var adjust_factor = 30;
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
             // var _index = content.indexOf(arr[i].split(" ")[0]);
@@ -261,7 +261,7 @@ function relocate(obj){
             arr[i] = '<b>' + arr[i] + '</b>';
             document.getElementById("novel_content").innerHTML = arr.join("\n");
             // alert(get_tex_width(arr[i],"20px serif") / width);
-            alert(total_pixels);
+            // alert(total_pixels);
             scrollTo(total_pixels);
             break;
         }
@@ -291,7 +291,7 @@ function scrollTo(pixels){
     var content_position = document.getElementById("novel_content");
     // var lineHeight = 56;
     // const row = (pixels).toFixed(0);
-    content_position.scrollTop = pixels;
+    content_position.scrollTop = pixels - 60;
 }
 
 // String.prototype.byteLength = function() {
