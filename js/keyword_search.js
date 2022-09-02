@@ -253,7 +253,7 @@ function relocate(obj){
     var width = document.getElementById("novel_content").clientWidth;
     var total_pixels = 0;
     var height_rows = 30;
-    var adjust_factor = 30;
+    var adjust_factor = 0;
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
             // var _index = content.indexOf(arr[i].split(" ")[0]);
@@ -266,11 +266,12 @@ function relocate(obj){
             break;
         }
         else {
-            if (get_tex_width(arr[i],"20px Crimson Text") / width <= 1){
+            // alert(get_tex_width(arr[i],"18px Crimson Text"))
+            if (get_tex_width(arr[i],"18px Crimson Text") / width <= 1){
               total_pixels = total_pixels + height_rows;
             }
             else {
-                var x = Math.ceil(((get_tex_width(arr[i],"20px Crimson Text") + adjust_factor) / width));
+                var x = Math.ceil(((get_tex_width(arr[i],"18px Crimson Text") + adjust_factor) / width));
                 total_pixels = total_pixels + height_rows * x;
             }
             continue;
