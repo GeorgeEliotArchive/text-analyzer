@@ -1,0 +1,162 @@
+/*style.css created by Chaohui(Jennie) Ren*/
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html,
+body {
+    background-color: #fff;
+    color: black;
+    font-family: "Crimson Text", serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+h1{
+    text-align: center;
+}
+
+
+.row--1, .row--2, .row--3,.row--4{
+    max-width: 820px;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+
+}
+.row--1{ 
+    margin-bottom: 8px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+}
+.row--2{ 
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+}
+.row--4{
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin-top:16px;
+    text-align: justify;
+}
+#select_novel_list, #keyword{
+    height:32px;
+}
+.search1{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+#search{
+    margin:0 8px;
+    border-radius: 5px;
+    background-color: rgba(199,46,46,.9);
+    color: white;
+    border:none !important; 
+    -webkit-box-shadow: 4px 4px  1px rgba(0, 0, 0, 0.24); 
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.24);
+    -webkit-transition: border-color background-color .2s;
+    -webkit-transition: background-color .2s;
+    -webkit-transition: all .2s;
+    -webkit-transition: all .3s;
+    transition: all .2s;
+    width:80px;
+}
+#search:hover{
+    background-color: rgba(199,46,46);  
+}
+#search:active{
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+            /* Scaling button to 0.98 to its original size */
+            -webkit-box-shadow: 2px 2px  1px rgba(0, 0, 0, 0.24);
+            box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.24);
+            /* Lowering the shadow */
+}
+.sensitive_word{
+    white-space: nowrap;
+    margin:auto;
+    margin-left:4px;
+}
+.select-box--1{
+    width: 356.5px;
+}
+.select-box--2{
+    margin-left:21px;
+}
+/*query result overview info*/
+#keyword_test{
+    font-weight:600;
+    margin-bottom: 0px;
+}
+#total_text_lines,#total_word_count,#query_results_title h3{
+    font-size:20px;
+    margin-bottom: 0px;
+}
+#query_results_title{
+    margin-bottom: 2px;
+}
+.row--3{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-style: solid ;
+    border-radius: 2px;
+    margin-top:8px;
+    padding-left: 5px;
+}
+/*query result boxes*/
+#plain_text{text-align: center}
+#sensitive_value,#leftContext_value,#rightContext_value{
+    display: none;
+}
+#query_results, .row--4-1{
+    width: 520px;
+    border-style: solid;
+    border-radius: 2px;
+    padding:16px;
+}
+#query_results{
+    margin-left: 8px;
+}
+.row--4-1{
+    margin-right: 8px
+}
+b{
+    font-weight: 600;
+    color:#C72E2E;
+}
+/*Add hover effect to the key words*/
+#query_results{
+/*    position: relative;*/
+}
+#result {
+    text-decoration: none;
+    position: absolute;
+    -webkit-transition:font-size 0.3s ease-out;
+    transition:font-size 0.3s ease-out;
+/*
+    display: block;
+    width: 498px;
+    margin-bottom: 10px
+*/
+}
+#result b:hover{
+    font-size:24px;
+    -webkit-transition:font-size 0.3s ease-out;
+    transition:font-size 0.3s ease-out;
+}
+
+

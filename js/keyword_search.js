@@ -267,11 +267,11 @@ function relocate(obj){
         }
         else {
             // alert(get_tex_width(arr[i],"18px Crimson Text"))
-            if (get_tex_width(arr[i],"18px Crimson Text") / width <= 1){
+            if (get_tex_width(arr[i],"19px Crimson Text") / width <= 1){
               total_pixels = total_pixels + height_rows;
             }
             else {
-                var x = Math.ceil(((get_tex_width(arr[i],"18px Crimson Text") + adjust_factor) / width));
+                var x = Math.ceil(((get_tex_width(arr[i],"19px Crimson Text") + adjust_factor) / width));
                 total_pixels = total_pixels + height_rows * x;
             }
             continue;
