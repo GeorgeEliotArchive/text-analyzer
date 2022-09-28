@@ -1,20 +1,14 @@
-// function getValue(){
-//     var novel_data = document.getElementById("novel_list");
-//     console.log(novel_data);
-// }
-// function gettext(url){
-//     var request = new XMLHttpRequest();
-//     request.open('GET', url, true);
-//     request.send(null);
-//     request.onreadystatechange = function () {
-//         if (request.readyState === 4 && request.status === 200) {
-//             var type = request.getResponseHeader('Content-Type');
-//             if (type.indexOf("text") !== 1) {
-//                 return request.responseText;
-//             }
-//         }
-//     }
-// }
+const keyword_extractor = require("keyword-extractor");
+
+function keyword_extract(sentence){
+    const extraction_result = keyword_extractor.extract(sentence,{
+        language:"english",
+        remove_digits: true,
+        return_changed_case:true,
+        remove_duplicates: false
+    });
+    return extraction_result
+}
 
 function file_info() {
 
@@ -42,6 +36,8 @@ function file_info() {
         txtFile.send(null);
         document.getElementById("novel_content").innerHTML = allText;
     }
+    // var extract_result = keyword_extract(allText);
+    // alert(extract_result);
     this.arr_allText= allText.split("\n");
     document.getElementById("total_text_lines").innerHTML = "Total text lines : " + "  " + this.arr_allText.length;
     document.getElementById("total_word_count").innerHTML = "Total word count : " + "  " + allText.length;
