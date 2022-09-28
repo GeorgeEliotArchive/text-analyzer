@@ -1,3 +1,21 @@
+// // Load wink-nlp package  & helpers.
+// const winkNLP = require( 'wink-nlp' );
+// // Load "its" helper to extract item properties.
+// const its = require( 'wink-nlp/src/its.js' );
+// // Load "as" reducer helper to reduce a collection.
+// const as = require( 'wink-nlp/src/as.js' );
+// // Load english language model — light version.
+// const model = require( 'wink-eng-lite-model' );
+// // Instantiate winkNLP.
+// const nlp = winkNLP( model );
+//
+// function POSTAG(sentence){
+//     const text = sentence
+//     const doc = nlp.readDoc(text);
+//     // console.log(doc.tokens().out(its.type, as.freqTable));
+//     return doc.tokens().out(its.pos)
+// }
+
 function re_remove_punctuation(str){
     var arr_str = str.replace(/[^\w\s\']|_/g, " ").split(" ");
     return arr_str;
@@ -205,7 +223,6 @@ function keywordsearch() {
     document.getElementById("keyword_test").innerHTML = "Selected keyword is: " + this.keyword;
     var l_length_str = document.getElementById("left_context");
     var l_length_int = parseInt(l_length_str.value);
-
     var r_length_str = document.getElementById("right_context");
     var r_length_int = parseInt(r_length_str.value);
 
@@ -248,32 +265,40 @@ function keywordsearch() {
 
 function relocate(obj){
     var keyword = obj.innerText;
+    // alert(keyword)
     var content = $("#novel_content").text();
     var arr = content.split("\n");
-    var width = document.getElementById("novel_content").clientWidth;
+    var width = document.getElementById("novel_content").clientWidth ;
+    // alert(width)
     var total_pixels = 0;
-    var height_rows = 30;
-    var adjust_factor = 0;
+    var adjust_factor = 11;
+    var total_lines = 0;
     for(var i = 0; i < arr.length; i++){
         if (arr[i].split(" ")[0] == keyword.split(" ")[0]){
-            // var _index = content.indexOf(arr[i].split(" ")[0]);
             var _index = i;
-            arr[i] = '<b>' + arr[i] + '</b>';
+            arr[i] = '<div id="relocated_result" class="relocated_result" style="height: 30px; width: 468px"><b>' + arr[i] + '</b></div>';
+            // console.log(arr[i])
+            // alert(arr[i]);
             document.getElementById("novel_content").innerHTML = arr.join("\n");
+            let x = document.getElementById('relocated_result');
+            x.scrollIntoView()
+            // document.getElementById('relocate_result').scrollIntoView()
             // alert(get_tex_width(arr[i],"20px serif") / width);
-            // alert(total_pixels);
-            scrollTo(total_pixels);
+            // alert(keyword.split(" ")[0])
+            // scrollTo(total_pixels);
             break;
         }
         else {
-            // alert(get_tex_width(arr[i],"18px Crimson Text"))
-            if (get_tex_width(arr[i],"19px Crimson Text") / width <= 1){
-              total_pixels = total_pixels + height_rows;
-            }
-            else {
-                var x = Math.ceil(((get_tex_width(arr[i],"19px Crimson Text") + adjust_factor) / width));
-                total_pixels = total_pixels + height_rows * x;
-            }
+            // alert(textSize("20px","Crimson Text",arr[i]).width, get_tex_width(arr[i], "20px Crimson Text"))
+            // if (get_tex_width(arr[i], "20px Crimson Text") / width <= 1){
+            //     // total_lines += 1
+            //   total_pixels = total_pixels + 30;
+            // }
+            // else {
+            //     var x = Math.ceil(get_tex_width(arr[i], "20px Crimson Text") / width);
+            //     total_pixels = total_pixels + 30 * x
+            //     // total_lines += x
+            // }
             continue;
         }
     }
@@ -290,9 +315,10 @@ function relocate(obj){
 
 function scrollTo(pixels){
     var content_position = document.getElementById("novel_content");
-    // var lineHeight = 56;
-    // const row = (pixels).toFixed(0);
+    // // var lineHeight = 56;
+    // // const row = (pixels).toFixed(0);
     content_position.scrollTop = pixels - 60;
+    // $('novel_content').scrollTop(pixels);
 }
 
 // String.prototype.byteLength = function() {
@@ -347,8 +373,33 @@ function get_tex_width(txt, font) {
     this.context.font = font;
     return this.context.measureText(txt).width;
 }
-// $("#calculated").html('Calculated width ' + get_tex_width("Hello World", "30px Arial"));
-//
-// $("#rendered").html("Span text width "+$("span").width());
+
+const get_tex_height = (txt, font) => {
+    const element = document.createElement('canvas');
+    const context = element.getContext("2d");
+    context.font = font;
+    const height = parseInt(context.font)
+    return height;
+}
+
+function textSize(fontSize,fontFamily,text){
+    var span = document.createElement("span");
+    var result = {};
+    result.width = span.offsetWidth;
+    result.height = span.offsetHeight;
+    span.style.visibility = "hidden";
+    span.style.fontSize = fontSize;
+    span.style.fontFamily = fontFamily;
+    span.style.display = "inline-block";
+    document.body.appendChild(span);
+    if(typeof span.textContent != "undefined"){
+        span.textContent = text;
+    }else{
+        span.innerText = text;
+    }
+    result.width = parseFloat(window.getComputedStyle(span).width) - result.width;
+    result.height = parseFloat(window.getComputedStyle(span).height) - result.height;
+    return result;
+}
 
 

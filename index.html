@@ -13,12 +13,17 @@
     <!--  4. D3 package  -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
-    <!--  5. Other JS documents  -->
+    <!--  5. Load d3-cloud -->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+    <!--  6. Other JS documents  -->
     <script type="text/javascript" src="js/file_info.js"></script>
     <script type="text/javascript" src="js/keyword_search.js"></script>
     <script type="text/javascript" src="js/check_box_status.js"></script>
     <script type="text/javascript" src="server_test.js"></script>
     <script type="text/javascript" src="js/device_check.js"></script>
+    <script type="text/javascript" src="js/NLP_function.js.js"></script>
+
 <!--    <script type="text/javascript" src="js/left_context.js"></script>-->
 <!--    <script type="text/javascript" src="js/right_context.js"></script>-->
 <!--    <script type="text/javascript" src="js/createRows.js"></script>-->
@@ -37,7 +42,7 @@
         <option value="https://georgeeliotarchive.org/files/original/2149439c54aa729784f77413069e1f82.txt">Daniel Deronda (1876)</option>
         <option value="https://georgeeliotarchive.org/files/original/907b3c33ba7988bf524f20d837f1dc3b.txt">Felix Holt, the Radical (1866)</option>
         <option value="https://georgeeliotarchive.org/files/original/d828ef209fb49bf45bbb2d24f58e5b74.txt">Impressions of Theophrastus Such (1879)</option>
-        <option value="https://georgeeliotarchive.org/files/original/0bfa9078069b5beaf0929db5229a7108.txt">Middlemarch (1871-72)</option>
+        <option value="https://georgeeliotarchive.org/files/original/947f73407b901969d01aeda630f7197d.txt">Middlemarch (1871-72)</option>
         <option value="https://georgeeliotarchive.org/files/original/3d43f4fe740957af8f44b3cc3c546634.txt">Romola (1863)</option>
         <option value="https://georgeeliotarchive.org/files/original/bc75805af6c1c3c320ecb1a35ce6726d.txt">Scenes of Clerical Life (1858)</option>
         <option value="https://georgeeliotarchive.org/files/original/43c0fcd54037b45ab266e76de89ad6d0.txt">Silas Marner (1861)</option>
@@ -49,12 +54,17 @@
     <p id="p_novel_name"></p>
 -->
     <form name="keyword_searching" class="search1">
-<!--        <h3>Keyword search</h3>-->
-        <input type="text" id="keyword" placeholder="Type the keywords">
-        <input type="button" id="search" value="Search" onclick="keywordsearch()">
+<!--    <form name="keyword_searching" class="search1" action="/" method="post">-->
+
+        <input type="text" id="keyword" name="keyword" placeholder="Type the keywords">
+
+        <input type="button" id="search" value="Search" onclick="keywordsearch(); create_wordcloud()">
+<!--        <input type="submit" id="search" value="Search" onclick="keywordsearch(); create_wordcloud()">-->
+
         <input type="checkbox" id="case_sensitive">
         <div class="sensitive_word">Case Sensitive</div>
-<!--        <input type="button" id="device_test" value="device" onclick="deviceType()">-->
+
+        <input type="button" id="device_test" value="device" onclick="deviceType()">
     </form>
 </div>
     
@@ -96,14 +106,19 @@
     <div id="query_results"></div>
     <div class="row--4-1">
     <h3 id="plain_text">Complete Text</h3>
-    <div id="novel_content" contenteditable="true" style="white-space: pre-wrap; overflow-x: auto; width: 500px; height: 1500px; padding-right: 16px">
+        <div id="novel_content" contenteditable="true" style="white-space: pre-wrap; overflow-x: auto; width: 500px; height: 2500px; padding-right: 16px"/>
+
     </div>
     </div>
     </div>
-        
     </div>
-    
-   
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz">Word Cloud</div>
+
+    <script type="text/javascript" src="js/wordcloud.js"></script>
+
+
+    <!--    <div id="textcould" style="width: 200px; height: 500px; text-align: center">Cloud text of keywords</div>-->
 
 </body>
 </html>

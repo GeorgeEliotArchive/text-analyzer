@@ -80,18 +80,38 @@
 // })
 const express = require('express')
 const path = require('path')
+// var requestHandler = require('./requestHandler')
+var bodyParser = require('body-parser')
+
 
 const app = express()
 const ip = '127.0.0.1'
 const port = 80
 const fpath_html = path.join(__dirname, '/index.html')
 
+const spawn = require('child_process').spawn
+
 app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+app.post('/index')
 
 app.get('/',function (req,res){
     res.setHeader('Content-Type', 'text/html');
-    res.sendFile(fpath_html)
+    res.sendFile(fpath_html);
 })
+
+// app.get('/todos/:id',function (req, res){
+//     res.send(`get/todos/${req.params.id}`);
+// })
+
+app.post('/',function (req,res){
+    // res.send('Input keyword is:  \"' + req.body.keyword + '\".')
+    const keyword = req.body.keyword;
+    console.log(keyword);
+    // console.log(novel_content);
+})
+
 
 app.listen(port, function (){
     console.log(`Express running on http://${ip}:${port}`)
